@@ -1,0 +1,22 @@
+<phpunit bootstrap="./tests/bootstrap.php"
+         colors="true"
+         strict="true"
+         stopOnError="true"
+         stopOnFailure="true"
+         stopOnIncomplete="true"
+         stopOnSkipped="true"
+         verbose="true">
+    <testsuites>
+        <testsuite name="Main">
+            <directory>tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="true" showOnlySummary="false"/>
+    </logging>
+</phpunit>

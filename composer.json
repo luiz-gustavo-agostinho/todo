@@ -1,0 +1,15 @@
+{
+    "name": "hodorhodor/todo",
+    "require": {
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Todo\\": "src/",
+            "Todo\\Tests\\": "tests/"
+        }
+    }
+}
