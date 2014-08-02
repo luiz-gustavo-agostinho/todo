@@ -2,12 +2,12 @@
 
 namespace Todo\Interactor;
 
-use \Todo\Boundary\Item\Add;
+use Todo\Boundary\Item\Add;
 use Todo\Boundary\Item\Get;
-use \Todo\Boundary\Item\Update;
-use \Todo\Result\Add as AddResult;
-use \Todo\Entity\Item as ItemEntity;
-use \Todo\Persistence\File\Item as PersistenceItem;
+use Todo\Boundary\Item\Update;
+use Todo\Entity\Item as ItemEntity;
+use Todo\Persistence\File\Item as PersistenceItem;
+use Todo\Result\Add as AddResult;
 
 class Item
 {

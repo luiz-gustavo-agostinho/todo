@@ -2,9 +2,8 @@
 
 namespace Todo\Tests\Unit\Interactor;
 
-use \Todo\Tests\Unit\Request\Item\Add;
-
-use \Todo\Interactor\Item;
+use Todo\Interactor\Item;
+use Todo\Tests\Unit\Request\Item\Add;
 use Todo\Tests\Unit\Request\Item\Get;
 use Todo\Tests\Unit\Request\Item\Update;
 

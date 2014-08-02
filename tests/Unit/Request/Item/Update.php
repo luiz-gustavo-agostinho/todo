@@ -1,10 +1,15 @@
 <?php
 
 namespace Todo\Tests\Unit\Request\Item;
-use \Todo\Boundary\Item\Update as UpdateBoundary;
+
+use Todo\Boundary\Item\Update as UpdateBoundary;
+use Todo\Entity\DataConversion;
+
 
 class Update implements UpdateBoundary
 {
+    use DataConversion;
+
     protected $title;
     protected $id;
 
@@ -31,20 +36,5 @@ class Update implements UpdateBoundary
     {
         $this->id = $id;
         return $this;
-    }
-
-    public function toArray()
-    {
-        $properties = get_class_vars(__CLASS__);
-        $array = array();
-
-        foreach ($properties as $prop => $null) {
-            $method = 'get' . ucfirst($prop);
-            if (method_exists($this, $method)) {
-                $array[$prop] = $this->$method();
-            }
-        }
-
-        return $array;
     }
 }

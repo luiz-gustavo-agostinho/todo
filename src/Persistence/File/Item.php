@@ -1,9 +1,8 @@
 <?php
 namespace Todo\Persistence\File;
 
-use SebastianBergmann\Exporter\Exception;
-use \Todo\Persistence\Item as ItemInterface;
-use \Todo\Entity\Item as ItemEntity;
+use Todo\Entity\Item as ItemEntity;
+use Todo\Persistence\Item as ItemInterface;
 
 class Item implements ItemInterface
 {
@@ -14,10 +13,10 @@ class Item implements ItemInterface
         return $this->basePath . str_replace('\\', '_', get_class($this)) . '-' . $key;
     }
 
-    public function store(\Todo\Entity\Item $item)
+    public function store(ItemEntity $item)
     {
         $key = $item->getId();
-        return (bool) file_put_contents($this->getPath($key), $item->toJson());
+        return (bool)file_put_contents($this->getPath($key), $item->toJson());
     }
 
     public function retrieve($key)

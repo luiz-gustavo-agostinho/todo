@@ -12,9 +12,9 @@ class ItemTest extends \PHPUnit_Framework_TestCase
     {
         $item = new Item();
         $array = array(
-          'id' => 1,
-          'status' => 'x',
-          'title' => 'Oh! pé',
+            'id' => 1,
+            'status' => 'x',
+            'title' => 'Oh! pé',
         );
         $jsonExpected = json_encode($array, true);
 
@@ -23,8 +23,11 @@ class ItemTest extends \PHPUnit_Framework_TestCase
             ->setTitle($array['title']);
         $jsonActual = $item->toJson();
 
+        $arrayExpected = json_decode($jsonExpected, true);
+        $arrayActual = json_decode($jsonActual, true);
+
         $this->assertJson($jsonActual);
-        $this->assertEquals($jsonExpected, $jsonActual);
+        $this->assertEquals($arrayExpected, $arrayActual);
     }
 }
  

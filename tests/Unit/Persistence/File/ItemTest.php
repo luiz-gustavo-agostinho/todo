@@ -5,7 +5,7 @@ namespace Todo\Tests\Unit\Persistence\File;
 
 
 use Todo\Entity\Item;
-use \Todo\Persistence\File\Item as PersistenceItem;
+use Todo\Persistence\File\Item as PersistenceItem;
 
 class ItemTest extends \PHPUnit_Framework_TestCase
 {

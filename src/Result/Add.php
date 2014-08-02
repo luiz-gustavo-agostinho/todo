@@ -2,10 +2,13 @@
 
 namespace Todo\Result;
 
-use \Todo\Boundary\Result;
+use Todo\Boundary\Result;
+use Todo\Entity\DataConversion;
 
 class Add implements Result
 {
+    use DataConversion;
+
     protected $id;
     protected $boolean;
 
