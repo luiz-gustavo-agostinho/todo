@@ -3,12 +3,18 @@
 namespace Todo\Tests\Unit\Interactor;
 
 use Todo\Interactor\Card;
+use Todo\Persistence\File\Card as CardPersistence;
 use Todo\Tests\Unit\Request\Card\Add;
 use Todo\Tests\Unit\Request\Card\Get;
 use Todo\Tests\Unit\Request\Card\Update;
 
 class CardTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var CardPersistence
+     */
+    protected $persistence;
+
     public function testAdd()
     {
         $interactor = new Card();
@@ -22,9 +28,10 @@ class CardTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($result->getBoolean());
         $this->assertTrue($result->getId() > 0);
 
-        $persistence = new \Todo\Persistence\File\Card();
+        $persistence = $this->persistence;
         $retrieveResult = $persistence->retrieve($result->getId());
         $this->assertEquals($title, $retrieveResult->getTitle());
+        $persistence->remove($result->getId());
     }
 
     public function testAddFailStore()
@@ -48,20 +55,19 @@ class CardTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($result->getBoolean());
     }
 
-
     public function testUpdate()
     {
         $requestAdd = new Add();
         $requestUpdate = new Update();
-        $CardIteractor = new Card();
+        $cardIteractor = new Card();
 
         $requestAdd->setTitle('Kill Bill');
-        $addResult = $CardIteractor->add($requestAdd);
+        $addResult = $cardIteractor->add($requestAdd);
 
         $requestUpdate->setId($addResult->getId())
             ->setTitle('Kill Adama');
 
-        $updateResult = $CardIteractor->update($requestUpdate);
+        $updateResult = $cardIteractor->update($requestUpdate);
 
         $this->assertEquals($addResult->getId(), $updateResult->getId());
         $this->assertEquals($requestUpdate->getTitle(), $updateResult->getTitle());
@@ -72,19 +78,23 @@ class CardTest extends \PHPUnit_Framework_TestCase
     {
         $requestAdd = new Add();
         $requestGet = new Get();
-        $CardInteractor = new Card();
+        $cardInteractor = new Card();
 
         $requestAdd->setTitle('store this please Mr. Pericles');
-        $addResult = $CardInteractor->add($requestAdd);
+        $addResult = $cardInteractor->add($requestAdd);
 
         $requestGet->setId($addResult->getId());
 
-        $getResult = $CardInteractor->get($requestGet);
+        $getResult = $cardInteractor->get($requestGet);
         $this->assertTrue($getResult->getBoolean());
         $this->assertEquals($getResult->getId(), $addResult->getId());
         $this->assertEquals($getResult->getTitle(), $requestAdd->getTitle());
         $this->assertEquals($getResult->getStatus(), 1);
+        $this->persistence->remove($addResult->getId());
+    }
 
-
+    protected function setUp()
+    {
+        $this->persistence = new CardPersistence();
     }
 }

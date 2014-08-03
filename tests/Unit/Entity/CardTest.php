@@ -10,7 +10,7 @@ class CardTest extends \PHPUnit_Framework_TestCase
 {
     public function testToJson()
     {
-        $Card = new Card();
+        $card = new Card();
         $array = array(
             'id' => 1,
             'status' => 'x',
@@ -18,10 +18,10 @@ class CardTest extends \PHPUnit_Framework_TestCase
         );
         $jsonExpected = json_encode($array, true);
 
-        $Card->setId($array['id'])
+        $card->setId($array['id'])
             ->setStatus($array['status'])
             ->setTitle($array['title']);
-        $jsonActual = $Card->toJson();
+        $jsonActual = $card->toJson();
 
         $arrayExpected = json_decode($jsonExpected, true);
         $arrayActual = json_decode($jsonActual, true);

@@ -9,33 +9,52 @@ use Todo\Persistence\File\Card as PersistenceCard;
 
 class CardTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var PersistenceCard
+     */
+    protected $persistence;
+
+    public function setUp()
+    {
+        $this->persistence = new PersistenceCard();
+    }
+
+
     public function testStoreRetrieve()
     {
-        $Card = new Card();
+        $card = new Card();
         $array = array(
             'id' => 1,
             'status' => 'x',
             'title' => 'Oh! pé',
         );
-        $Card->setId($array['id'])
+        $card->setId($array['id'])
             ->setStatus($array['status'])
             ->setTitle($array['title']);
 
-        $persistence = new PersistenceCard();
-        $isStored = $persistence->store($Card);
+        $persistence = $this->persistence;
+        $isStored = $persistence->store($card);
         $this->assertTrue($isStored);
 
         $persistence = new PersistenceCard();
-        $CardActual = $persistence->retrieve($Card->getId());
+        $cardActual = $persistence->retrieve($card->getId());
 
-        $this->assertEquals($Card, $CardActual);
+        $this->assertEquals($card, $cardActual);
+        $persistence->remove($card->getId());
     }
 
     public function testRetrieveInvalidCard()
     {
         $this->setExpectedException('RuntimeException');
-        $persistence = new PersistenceCard();
+        $persistence = $this->persistence;
         $persistence->retrieve(-10);
     }
+
+    public function testRemoveInvalidCard()
+    {
+        $this->setExpectedException('Exception');
+        $persistence = new PersistenceCard();
+        $isRemoved = $persistence->remove(-10);
+        $this->assertFalse($isRemoved);
+    }
 }
- 

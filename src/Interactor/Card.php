@@ -15,14 +15,14 @@ class Card
 
     public function add(Add $requestAdd)
     {
-        $Card = new CardEntity();
+        $card = new CardEntity();
         $generatedId = time();
-        $Card->setId($generatedId);
-        $Card->setTitle($requestAdd->getTitle());
-        $Card->setStatus(1);
+        $card->setId($generatedId);
+        $card->setTitle($requestAdd->getTitle());
+        $card->setStatus(1);
 
         $persistence = $this->getPersistence();
-        $isStored = $persistence->store($Card);
+        $isStored = $persistence->store($card);
         if (!$isStored) {
             $generatedId = null;
         }
@@ -34,13 +34,13 @@ class Card
     public function update(Update $requestUpdate)
     {
         $persistence = $this->getPersistence();
-        $Card = $persistence->retrieve($requestUpdate->getId());
+        $card = $persistence->retrieve($requestUpdate->getId());
 
-        $Card->fromArray($requestUpdate->toArray());
-        $isStored = $persistence->store($Card);
+        $card->fromArray($requestUpdate->toArray());
+        $isStored = $persistence->store($card);
 
-        $updateResult = new \Todo\Result\Update($isStored, $Card->getId());
-        $updateResult->setTitle($Card->getTitle());
+        $updateResult = new \Todo\Result\Update($isStored, $card->getId());
+        $updateResult->setTitle($card->getTitle());
 
         return $updateResult;
     }
@@ -48,11 +48,11 @@ class Card
     public function get(Get $requestGet)
     {
         $persistence = $this->getPersistence();
-        $Card = $persistence->retrieve($requestGet->getId());
+        $card = $persistence->retrieve($requestGet->getId());
 
-        $getResult = new \Todo\Result\Get(true, $Card->getId());
-        $getResult->setTitle($Card->getTitle());
-        $getResult->setStatus($Card->getStatus());
+        $getResult = new \Todo\Result\Get(true, $card->getId());
+        $getResult->setTitle($card->getTitle());
+        $getResult->setStatus($card->getStatus());
 
         return $getResult;
     }

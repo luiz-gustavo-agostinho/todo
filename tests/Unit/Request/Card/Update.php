@@ -5,7 +5,6 @@ namespace Todo\Tests\Unit\Request\Card;
 use Todo\Boundary\Card\Update as UpdateBoundary;
 use Todo\Entity\DataConversion;
 
-
 class Update implements UpdateBoundary
 {
     use DataConversion;

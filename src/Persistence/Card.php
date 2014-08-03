@@ -4,7 +4,11 @@ namespace Todo\Persistence;
 
 interface Card
 {
-    public function store(\Todo\Entity\Card $Card);
+    public function store(\Todo\Entity\Card $card);
 
-    public function retrieve($key);
+    public function retrieve($id);
+
+    public function remove($id);
+
+    public function generateKey($id);
 }

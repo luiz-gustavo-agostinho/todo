@@ -24,4 +24,3 @@ class DataConversionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($data, $actualData);
     }
 }
- 
