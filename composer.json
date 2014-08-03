@@ -1,5 +1,15 @@
 {
-    "name": "hodorhodor/todo",
+    "name": "hodorpericles/todo",
+    "authors": [
+        {
+            "name": "Luiz Agostinho",
+            "email": "luiz.gustavo.xd@gmail.com"
+        },
+        {
+            "name": "Thiago Carvalho",
+            "email": "thiago.oak@gmail.com"
+        }
+    ],
     "require": {
 
     },
