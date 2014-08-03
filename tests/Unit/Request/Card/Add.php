@@ -1,10 +1,10 @@
 <?php
 
-namespace Todo\Tests\Unit\Request\Item;
+namespace Todo\Tests\Unit\Request\Card;
 
 use Todo\Entity\DataConversion;
 
-class Add implements \Todo\Boundary\Item\Add
+class Add implements \Todo\Boundary\Card\Add
 {
     use DataConversion;
 

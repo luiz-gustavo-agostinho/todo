@@ -1,6 +1,6 @@
 <?php
 
-namespace Todo\Boundary\Item;
+namespace Todo\Boundary\Card;
 
 interface Add
 {

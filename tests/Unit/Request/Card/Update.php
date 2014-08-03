@@ -1,8 +1,8 @@
 <?php
 
-namespace Todo\Tests\Unit\Request\Item;
+namespace Todo\Tests\Unit\Request\Card;
 
-use Todo\Boundary\Item\Update as UpdateBoundary;
+use Todo\Boundary\Card\Update as UpdateBoundary;
 use Todo\Entity\DataConversion;
 
 

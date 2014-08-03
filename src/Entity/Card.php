@@ -1,7 +1,7 @@
 <?php
 namespace Todo\Entity;
 
-class Item
+class Card
 {
     use DataConversion;
 

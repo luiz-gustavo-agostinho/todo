@@ -2,9 +2,9 @@
 
 namespace Todo\Persistence;
 
-interface Item
+interface Card
 {
-    public function store(\Todo\Entity\Item $item);
+    public function store(\Todo\Entity\Card $Card);
 
     public function retrieve($key);
 }

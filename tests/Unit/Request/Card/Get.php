@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Todo\Tests\Unit\Request\Item;
+namespace Todo\Tests\Unit\Request\Card;
 
 
 use Todo\Entity\DataConversion;
 
-class Get implements \Todo\Boundary\Item\Get
+class Get implements \Todo\Boundary\Card\Get
 {
     use DataConversion;
 

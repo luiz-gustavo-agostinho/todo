@@ -1,10 +1,10 @@
 <?php
 namespace Todo\Persistence\File;
 
-use Todo\Entity\Item as ItemEntity;
-use Todo\Persistence\Item as ItemInterface;
+use Todo\Entity\Card as CardEntity;
+use Todo\Persistence\Card as CardInterface;
 
-class Item implements ItemInterface
+class Card implements CardInterface
 {
     protected $basePath = '/tmp/';
 
@@ -13,10 +13,10 @@ class Item implements ItemInterface
         return $this->basePath . str_replace('\\', '_', get_class($this)) . '-' . $key;
     }
 
-    public function store(ItemEntity $item)
+    public function store(CardEntity $Card)
     {
-        $key = $item->getId();
-        return (bool)file_put_contents($this->getPath($key), $item->toJson());
+        $key = $Card->getId();
+        return (bool)file_put_contents($this->getPath($key), $Card->toJson());
     }
 
     public function retrieve($key)
@@ -28,8 +28,8 @@ class Item implements ItemInterface
 
         $json = file_get_contents($path);
         $array = json_decode($json);
-        $item = new ItemEntity();
-        $item->fromArray($array);
-        return $item;
+        $Card = new CardEntity();
+        $Card->fromArray($array);
+        return $Card;
     }
 }

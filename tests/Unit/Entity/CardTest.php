@@ -4,13 +4,13 @@
 namespace Todo\Tests\Unit\Entity;
 
 
-use Todo\Entity\Item;
+use Todo\Entity\Card;
 
-class ItemTest extends \PHPUnit_Framework_TestCase
+class CardTest extends \PHPUnit_Framework_TestCase
 {
     public function testToJson()
     {
-        $item = new Item();
+        $Card = new Card();
         $array = array(
             'id' => 1,
             'status' => 'x',
@@ -18,10 +18,10 @@ class ItemTest extends \PHPUnit_Framework_TestCase
         );
         $jsonExpected = json_encode($array, true);
 
-        $item->setId($array['id'])
+        $Card->setId($array['id'])
             ->setStatus($array['status'])
             ->setTitle($array['title']);
-        $jsonActual = $item->toJson();
+        $jsonActual = $Card->toJson();
 
         $arrayExpected = json_decode($jsonExpected, true);
         $arrayActual = json_decode($jsonActual, true);
@@ -30,4 +30,3 @@ class ItemTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($arrayExpected, $arrayActual);
     }
 }
- 
